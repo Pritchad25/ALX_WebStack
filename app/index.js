@@ -30,6 +30,7 @@ var httpsServerOptions = {
   'key' : fs.readFileSync('./https/key.pem'),
   'cert' : fs.readFileSync('./https/cert.pem')
 };
+
 var httpsServer = https.createServer(httpsServerOptions, function(req, res){
   unifiedServer(req, res);
 });
@@ -82,7 +83,7 @@ var unifiedServer = function(req, res){
     //Route the request to the handler specified in the router
     chosenHandler(data, function(statusCode, payload){
       //Use the status code called back by the handler or default to 200
-      statusCode = typeof(statusCode) == 'number' ? statusCode : 200;  
+      statusCode = typeof(statusCode) == 'number' ? statusCode : 200;
       //Use the payload called back by the handler or default to an empty object
       payload = typeof(payload) == 'object' ? payload : {};
       //Convert the paylooad to a string
@@ -90,9 +91,9 @@ var unifiedServer = function(req, res){
       //Return the response or Send the response
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(statusCode);
-      res.end(payloadString);
+      res.end(payloadString);   
       console.log('Returning this response: ', statusCode, payloadString);
-    });    
+    });
   });
 };
 
@@ -100,5 +101,6 @@ var unifiedServer = function(req, res){
 var router = {
   'ping' : handlers.ping,
   'users' : handlers.users,
-  'tokens' :handlers.tokens
+  'tokens' : handlers.tokens,
+  'checks' : handlers.checks 
 };
