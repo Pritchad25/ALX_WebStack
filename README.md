@@ -13,16 +13,16 @@ This is a web application built with the intention of monitoring uptime for webs
 
 ## Learning Objectives <a name="learning-objectives"></a>
 At the end of this project, you are expected to be able to explain to anyone, without the help of Google:
--How to use pure NodeJs to build a fully fledged web app without any libraries or frameworks
--Understand how to structure and organize your code in order to maintain it as your application grows
--Be able to write tests for your functions/modules written in NodeJS
--Have knowledge on how to deploy your application on platforms like Heroku
+- How to use pure NodeJs to build a fully fledged web app without any libraries or frameworks
+- Understand how to structure and organize your code in order to maintain it as your application grows
+- Be able to write tests for your functions/modules written in NodeJS
+- Have knowledge on how to deploy your application on platforms like Heroku
 
 ## Requirements <a name="requirements"></a>
--Code Editors: `Vi, Vim, Emacs, VS Code`
--Node Js version 20 or higher
--JavaScript Programming skills
--Basic understanding of HTTP Protocol (Optional)
+- Code Editors: `Vi, Vim, Emacs, VS Code`
+- Node Js version 20 or higher
+- JavaScript Programming skills
+- Basic understanding of HTTP Protocol (Optional)
 
 ## Getting Started <a name="getting-started"></a>
 To get started with this project, do the following:
