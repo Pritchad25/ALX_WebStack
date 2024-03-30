@@ -1,16 +1,19 @@
 /**
- * This is the Primary File for Our API
- * 
- * 
- */
+* This is the Primary File for Our API
+* 
+* 
+*/
 
 //Dependencies
 var http = require('http'); //requiring the http module and assigning it to the variable http
 var https = require('https');
 var StringDecoder = require('string_decoder').StringDecoder;
 var url = require('url'); 
-var config = require('./config');
+var config = require('./lib/config');
 var fs = require('fs');
+var handlers = require('./lib/handlers');
+var helpers = require('./lib/helpers');
+
 
 // Instantiating the HTTP server
 var httpServer = http.createServer(function(req, res){
@@ -73,7 +76,7 @@ var unifiedServer = function(req, res){
             'queryStringObject' : queryStringObject,
             'method' : method,
             'headers' : headers,
-            'payload' : buffer
+            'payload' : helpers.parseJsonToObject(buffer)
         };
 
         //Route the request to the handler specified in the router
@@ -87,25 +90,14 @@ var unifiedServer = function(req, res){
             //Return the response or Send the response
             res.setHeader('Content-Type', 'application/json');
             res.writeHead(statusCode);
-            res.end(payloadString);
+            res.end(payloadString);   
             console.log('Returning this response: ', statusCode, payloadString);
         });    
     });
 };
-//Defining the Handlers
-var handlers = {};
-
-//Ping handler
-handlers.ping = function(data, callback){
-    callback(200);
-};
-
-//Not Found Handler
-handlers.notFound = function(data, callback){
-    callback(404);
-};
 
 //Defining a Request Router
 var router = {
-    'ping' : handlers.ping
+    'ping' : handlers.ping,
+    'users' : handlers.users
 };
