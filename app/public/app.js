@@ -1,7 +1,7 @@
 /*
- * Frontend Logic for application
- *
- */
+* Frontend Logic for application
+*
+*/
 
 // Container for frontend application
 var app = {};
