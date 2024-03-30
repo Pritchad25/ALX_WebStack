@@ -2,12 +2,15 @@
  * Helpers for various tasks
  * 
  */
+
 //Dependencies
 var crypto = require('crypto');
 var config = require('./config');
 var querystring = require('querystring');
 var https = require('https');
-const { Stats } = require('fs');
+const { error } = require('console');
+var path = require('path');
+var fs = require('fs');
 //Container for all the helpers
 var helpers = {};
 
@@ -23,12 +26,12 @@ helpers.hash = function(str){
 };
 
 //Parse a JSON string to an object in all cases, without throwing
-helpers.parseJsonToObject = function(str) {
-    try {
+helpers.parseJsonToObject = function(str){
+    try{
         var obj = JSON.parse(str);
         return obj;
-    } catch (err) {
-        console.error("An error occurred:", err);
+    }
+    catch{error}{
         return {};
     }
 };
@@ -113,6 +116,25 @@ helpers.sendTwilioSms = function(phone, msg, callback){
         callback('Given parameters were missing or invalid');
     }
 
+};
+
+//Get the string content of a template
+helpers.getTemplate = function(templateName, callback){
+    templateName = typeof(templateName) == 'string' && templateName.length > 0 ? templateName : false;
+    if(templateName){
+        var templatesDir = path.join(__dirname, '/../templates/');
+        fs.readFile(templatesDir+templateName+'.html', 'utf8', function(err, str){
+            if(!err && str && str.length > 0){
+                callback(false, str);
+            }
+            else{
+                callback('No template could be found');
+            }
+        });
+    }
+    else{
+        callback('A valid template name was not specified');
+    }
 };
 //Export the module
 module.exports = helpers;
