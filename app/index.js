@@ -1,8 +1,8 @@
 /**
-* This is the Primary File for Our API
-* 
-* 
-*/
+ * This is the Primary File for Our API
+ * 
+ * 
+ */
 
 //Dependencies
 var http = require('http'); //requiring the http module and assigning it to the variable http
@@ -13,7 +13,6 @@ var config = require('./lib/config');
 var fs = require('fs');
 var handlers = require('./lib/handlers');
 var helpers = require('./lib/helpers');
-
 
 // Instantiating the HTTP server
 var httpServer = http.createServer(function(req, res){
@@ -30,7 +29,6 @@ var httpsServerOptions = {
   'key' : fs.readFileSync('./https/key.pem'),
   'cert' : fs.readFileSync('./https/cert.pem')
 };
-
 var httpsServer = https.createServer(httpsServerOptions, function(req, res){
   unifiedServer(req, res);
 });
@@ -91,7 +89,7 @@ var unifiedServer = function(req, res){
       //Return the response or Send the response
       res.setHeader('Content-Type', 'application/json');
       res.writeHead(statusCode);
-      res.end(payloadString);   
+      res.end(payloadString);
       console.log('Returning this response: ', statusCode, payloadString);
     });
   });
@@ -99,8 +97,8 @@ var unifiedServer = function(req, res){
 
 //Defining a Request Router
 var router = {
-  'ping' : handlers.ping,
-  'users' : handlers.users,
-  'tokens' : handlers.tokens,
-  'checks' : handlers.checks 
+    'ping' : handlers.ping,
+    'users' : handlers.users,
+    'tokens' : handlers.tokens,
+    'checks' : handlers.checks 
 };
