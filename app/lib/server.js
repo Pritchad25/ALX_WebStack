@@ -120,7 +120,12 @@ server.unifiedServer = function(req, res){
             }
             //Return the response-parts that are common to all content-types
             res.writeHead(statusCode);
-            res.end(payloadString);   
+            res.end(payloadString);
+            
+            //log the path the user was asking for so that when a request comes in and we look
+            //into the terminal we can see what the user has asked for. Log the request path
+            //console.log(`Request received on path: ${trimmedPath} with the method: ${method} with these query string parameters:`, queryStringObject);
+            //console.log(`Request received with these headers: `, headers);   
             console.log('Returning this response: ', statusCode, payloadString);
         });    
     });
@@ -134,7 +139,7 @@ server.router = {
     'account/deleted' : handlers.accountDeleted,
     'session/create' : handlers.sessionCreate,
     'session/deleted' : handlers.sessionDeleted,
-    'checks/all' : handlers.checkList,
+    'checks/all' : handlers.checksList,
     'checks/create' : handlers.checksCreate,
     'checks/edit' : handlers.checksEdit,
     'ping' : handlers.ping,
